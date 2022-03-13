@@ -1,0 +1,9 @@
+{
+    "files": [
+        "main.c",
+        "Makefile"
+    ],
+
+    "command": "make",
+    "time": 2
+}
