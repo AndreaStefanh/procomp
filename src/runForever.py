@@ -36,7 +36,7 @@ def compileExec(FileParsed :FileKeyword) -> None:
     else:
         if FileParsed.time < 0:
             print("ERROR: you cannot pause with a number less than 0")
-            sys.exit(-1)
+            sys.exit(1)
 
     if FileParsed.silent == True:
         FileParsed.command = FileParsed.command + " >/dev/null 2>/dev/null"
