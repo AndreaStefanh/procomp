@@ -18,6 +18,7 @@ class FileKeyword:
     def __init__(self) -> None:
         self.pushedFiles = False
         self.pushedCommand = False
+        self.calledTime = False
         pass
 
     def push(self, element :str, value) -> None:
