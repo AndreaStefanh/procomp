@@ -56,7 +56,7 @@ def parserArgs() -> str:
         
         else:
             printUsage()
-            print(f"ERROR: '{sys.argv[i]}' invalid option")
+            print(f"\nERROR: '{sys.argv[i]}' invalid option")
             sys.exit(1)
 
     return
