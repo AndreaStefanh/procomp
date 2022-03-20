@@ -5,7 +5,6 @@ import stat
 import datetime
 
 from parserConfig import *
-from threading import Event
 
 
 def clearScr() -> None:
@@ -26,6 +25,13 @@ def compileExec(FileParsed :FileKeyword) -> None:
         maFiles = str(maFiles) + " file"
     else:
         maFiles = str(maFiles) + " files"
+
+    if FileParsed.calledTime == False:
+        FileParsed.time = 0.5
+    else:
+        if FileParsed.time < 0:
+            print("ERROR: you cannot pause with a number less than 0")
+            sys.exit(-1)
 
     if FileParsed.silent == True:
         FileParsed.command = FileParsed.command + " >/dev/null 2>/dev/null"
@@ -58,25 +64,11 @@ def compileExec(FileParsed :FileKeyword) -> None:
                         FileParsed.modificationTime[i] = modificationTime
                         findChanges = True
                 
-                if FileParsed.calledTime == True:
-                    if FileParsed.time > 0:
-                        
-                        try:
-                            time.sleep(FileParsed.time)
-                        except KeyboardInterrupt:
-                            print("\r   \r", end='') # remove ^C in output
-                            sys.exit(0)
-                        
-                    else:
-                        print("ERROR: you cannot pause with a number less than 0")
-                        sys.exit(-1)
-                else:
-
-                    try:
-                        time.sleep(0.5)
-                    except KeyboardInterrupt:
-                        print("\r   \r", end='') # remove ^C in output
-                        sys.exit(0)
+                try:
+                    time.sleep(FileParsed.time)
+                except KeyboardInterrupt:
+                    print("\r   \r", end='') # remove ^C in output
+                    sys.exit(0)
 
     except KeyboardInterrupt:
         print("\r   \r", end='') # remove ^C in output
