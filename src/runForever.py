@@ -17,10 +17,15 @@ def clearScr() -> None:
 
 def compileExec(FileParsed :FileKeyword) -> None:
 
+    maFiles = len(FileParsed.files)
+
+    if maFiles == 0:
+        print("ERROR: no files were passed")
+        sys.exit(1)
+
     for file in FileParsed.files:
         FileParsed.modificationTime.append(time.ctime(os.stat(file)[stat.ST_MTIME]))
 
-    maFiles = len(FileParsed.files)
     if maFiles == 1:
         maFiles = str(maFiles) + " file"
     else:
