@@ -35,7 +35,11 @@ class FileKeyword:
 
                     for f in value:
                         if os.path.exists(f) == False:
-                            print(f"ERROR: Unable to find: '{f}'")
+                            print(f"ERROR: Unable to open: '{f}'")
+                            sys.exit(1)
+                        
+                        if os.path.isfile(f) == False:
+                            print(f"ERROR: '{f}' is not a file")
                             sys.exit(1)
 
                     self.pushedFiles = True
