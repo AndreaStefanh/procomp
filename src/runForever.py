@@ -27,6 +27,9 @@ def compileExec(FileParsed :FileKeyword) -> None:
     else:
         maFiles = str(maFiles) + " files"
 
+    if FileParsed.silent == True:
+        FileParsed.command = FileParsed.command + " >/dev/null 2>/dev/null"
+
 
     try:
         while True:

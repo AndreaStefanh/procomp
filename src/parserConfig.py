@@ -14,11 +14,17 @@ class FileKeyword:
     time = float()
     calledTime = bool()
 
+    silent = bool()
+    calledSilent = bool()
+
 
     def __init__(self) -> None:
         self.pushedFiles = False
         self.pushedCommand = False
         self.calledTime = False
+        self.calledSilent = False
+
+        self.silent = False
         pass
 
     def push(self, element :str, value) -> None:
@@ -50,6 +56,14 @@ class FileKeyword:
                 if self.calledTime == False:
                     self.calledTime = True
                     self.time = float(value)
+                else:
+                    print(f"ERROR: '{element}' arredy exist")
+                    sys.exit(1)
+            
+            elif element == "silent":
+                if self.calledSilent == False:
+                    self.calledSilent = True
+                    self.silent = bool(value)
                 else:
                     print(f"ERROR: '{element}' arredy exist")
                     sys.exit(1)
