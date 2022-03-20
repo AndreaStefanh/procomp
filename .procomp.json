@@ -1,0 +1,11 @@
+{
+    "files": [
+        "src/main.py",
+        "src/parserArgs.py",
+        "src/parserConfig.py",
+        "src/runForever.py"
+    ],
+
+    "command": "python3 makefile.py",
+    "silent": true
+}
