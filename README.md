@@ -11,7 +11,7 @@ for procomp to work you need a configuration file called **.procomp.json**
     "command": "gcc -Wall main.c -o main", // The command that should be run if a change is found to a file
     "time": 5, // (not mandatory) when it has to wait to check for file changes. default 0.5 seconds
     "silent": false // (not mandatory) if true it does not print on the screen any output of the commands executed in "command"
-// btw json doesn't support comments so you can't put comments in a real .procomp.json
+    // btw json doesn't support comments so you can't put comments in a real .procomp.json
 }
 ```
 
