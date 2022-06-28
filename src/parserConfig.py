@@ -36,24 +36,24 @@ class FileKeyword:
 
                     for f in value:
                         if os.path.exists(f) == False:
-                            print(f"ERROR: Unable to open: '{f}'")
+                            print(f"\33[91m\33[91m: Unable to open: '{f}'")
                             sys.exit(1)
                         
                         if os.path.isfile(f) == False:
-                            print(f"ERROR: '{f}' is not a file")
+                            print(f"\33[91mERROR:\033[0m '{f}' is not a file")
                             sys.exit(1)
                         
                         if f == nameConfigFile:
                             if self.pushedFilesItself == False:
                                 self.pushedFilesItself = True
                             else:
-                                print(f"ERROR: '{f}' is already called")
+                                print(f"\33[91mERROR:\033[0m '{f}' is already called")
                                 sys.exit(1)
 
                     self.pushedFiles = True
                     self.files = value
                 else:
-                    print(f"ERROR: '{element}' arredy exist")
+                    print(f"\33[91mERROR:\033[0m '{element}' arredy exist")
                     sys.exit(1)
             
             elif element == "command":
@@ -61,7 +61,7 @@ class FileKeyword:
                     self.pushedCommand = True
                     self.command = str(value)
                 else:
-                    print(f"ERROR: '{element}' arredy exist")
+                    print(f"\33[91mERROR:\033[0m '{element}' arredy exist")
                     sys.exit(1)
 
             elif element == "time":
@@ -69,7 +69,7 @@ class FileKeyword:
                     self.calledTime = True
                     self.time = float(value)
                 else:
-                    print(f"ERROR: '{element}' arredy exist")
+                    print(f"\33[91mERROR:\033[0m '{element}' arredy exist")
                     sys.exit(1)
             
             elif element == "silent":
@@ -77,15 +77,15 @@ class FileKeyword:
                     self.calledSilent = True
                     self.silent = bool(value)
                 else:
-                    print(f"ERROR: '{element}' arredy exist")
+                    print(f"\33[91mERROR:\033[0m '{element}' arredy exist")
                     sys.exit(1)
             
             else:
-                print(f"ERROR: no such keyword: '{element}' in the configuration file")
+                print(f"\33[91mERROR:\033[0m no such keyword: '{element}' in the configuration file")
                 sys.exit(1)
 
         except ValueError:
-            print(f"ERROR: unable to use '{value}' in '{element}'")
+            print(f"\33[91mERROR:\033[0m unable to use '{value}' in '{element}'")
             sys.exit(1)
     
 

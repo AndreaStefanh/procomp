@@ -47,7 +47,7 @@ def parseArgs() -> None:
 
             if sys.argv[i] == "install":
                 if os.getuid() != 0:
-                    print("ERROR: For this operation need root permition")
+                    print("\33[91mERROR:\033[0m For this operation need root permition")
                     exit(1)
                 
                 if os.path.exists("bin/procomp") == True:
@@ -64,13 +64,13 @@ def parseArgs() -> None:
                             stat.S_IROTH
                         )
                     else:
-                        print("ERROR: unable to find '/usr/bin/procomp'")
+                        print("\33[91mERROR:\033[0m unable to find '/usr/bin/procomp'")
                         exit(1)
                 else:
-                    print("ERROR: unable to find 'bin/procomp'")
+                    print("\33[91mERROR:\033[0m unable to find 'bin/procomp'")
                     exit(1)
             else:
-                print(f"ERROR: '{sys.argv[i]}' invalid option")
+                print(f"\33[91mERROR:\033[0m '{sys.argv[i]}' invalid option")
 
     return
 

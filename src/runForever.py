@@ -17,7 +17,7 @@ def clearScr() -> None:
 def reloadConfig(FileParsed :FileKeyword, maFiles :int) -> FileKeyword:
 
     if maFiles == 0:
-        print("ERROR: no files were passed")
+        print("\33[91mERROR:\033[0m no files were passed")
         sys.exit(1)
 
     for file in FileParsed.files:
@@ -27,7 +27,7 @@ def reloadConfig(FileParsed :FileKeyword, maFiles :int) -> FileKeyword:
         FileParsed.time = 0.5
     else:
         if FileParsed.time < 0:
-            print("ERROR: you cannot pause with a number less than 0")
+            print("\33[91mERROR:\033[0m you cannot pause with a number less than 0")
             sys.exit(1)
 
     if FileParsed.silent == True:
@@ -53,9 +53,9 @@ def compileExec(FileParsed :FileKeyword, nameConfigFile :str) -> None:
             exitCode = os.system(FileParsed.command)
 
             if exitCode == 0:
-                print(f"\r\33[92mAll good \33[97m({maFiles}, at {datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().second})", end='')
+                print(f"\r\33[92mAll good (\033[0m{maFiles}, at {datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().second})", end='')
             else:
-                print(f"\r\33[91mSomething went wrong\33[97m (error code {exitCode}, {maFiles}, at {datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().second})", end='')
+                print(f"\r\33[91mSomething went wrong \033[0m(error code {exitCode}, {maFiles}, at {datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().second})", end='')
 
 
             findChanges = False
