@@ -7,7 +7,7 @@ def main():
     
     filePath = parserArgs()
     FileKeyword = parserConfig(filePath)
-    compileExec(FileKeyword)
+    compileExec(FileKeyword, filePath)
 
 
 if __name__ == "__main__":

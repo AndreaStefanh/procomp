@@ -20,6 +20,7 @@ class FileKeyword:
 
     def __init__(self) -> None:
         self.pushedFiles = False
+        self.pushedFilesItself = False
         self.pushedCommand = False
         self.calledTime = False
         self.calledSilent = False
@@ -27,7 +28,7 @@ class FileKeyword:
         self.silent = False
         pass
 
-    def push(self, element :str, value) -> None:
+    def push(self, element :str, value: any, nameConfigFile :str) -> None:
 
         try:
             if element == "files":
@@ -41,6 +42,13 @@ class FileKeyword:
                         if os.path.isfile(f) == False:
                             print(f"ERROR: '{f}' is not a file")
                             sys.exit(1)
+                        
+                        if f == nameConfigFile:
+                            if self.pushedFilesItself == False:
+                                self.pushedFilesItself = True
+                            else:
+                                print(f"ERROR: '{f}' is already called")
+                                sys.exit(1)
 
                     self.pushedFiles = True
                     self.files = value
@@ -93,6 +101,6 @@ def parserConfig(path :str) -> FileKeyword:
     returnFileKeyword = FileKeyword()
 
     for i in range(0, len(data)):
-        returnFileKeyword.push(data[i][0], data[i][1])
+        returnFileKeyword.push(data[i][0], data[i][1], path)
 
     return returnFileKeyword

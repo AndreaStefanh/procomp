@@ -14,10 +14,7 @@ def clearScr() -> None:
     else:
         os.system("clear")
 
-
-def compileExec(FileParsed :FileKeyword) -> None:
-
-    maFiles = len(FileParsed.files)
+def reloadConfig(FileParsed :FileKeyword, maFiles :int) -> FileKeyword:
 
     if maFiles == 0:
         print("ERROR: no files were passed")
@@ -25,11 +22,6 @@ def compileExec(FileParsed :FileKeyword) -> None:
 
     for file in FileParsed.files:
         FileParsed.modificationTime.append(time.ctime(os.stat(file)[stat.ST_MTIME]))
-
-    if maFiles == 1:
-        maFiles = str(maFiles) + " file"
-    else:
-        maFiles = str(maFiles) + " files"
 
     if FileParsed.calledTime == False:
         FileParsed.time = 0.5
@@ -40,7 +32,18 @@ def compileExec(FileParsed :FileKeyword) -> None:
 
     if FileParsed.silent == True:
         FileParsed.command = FileParsed.command + " >/dev/null 2>/dev/null"
+    
+    return FileParsed
 
+def compileExec(FileParsed :FileKeyword, nameConfigFile :str) -> None:
+
+    maFiles = len(FileParsed.files)
+    FileParsed = reloadConfig(FileParsed, maFiles)
+
+    if maFiles == 1:
+        maFiles = str(maFiles) + " file"
+    else:
+        maFiles = str(maFiles) + " files"
 
     try:
         while True:
@@ -58,7 +61,7 @@ def compileExec(FileParsed :FileKeyword) -> None:
             findChanges = False
             while findChanges != True:
                 
-                for i in range(0, len(FileParsed.files)):
+                for i in range(0, len(FileParsed.files) - 1):
 
                     try: 
                         modificationTime = time.ctime(os.stat(FileParsed.files[i])[stat.ST_MTIME])
@@ -67,6 +70,18 @@ def compileExec(FileParsed :FileKeyword) -> None:
                     
                     if modificationTime != FileParsed.modificationTime[i]:
                         FileParsed.modificationTime[i] = modificationTime
+                        if FileParsed.files[i] == nameConfigFile:
+
+                            FileParsed = parserConfig(nameConfigFile)
+
+                            maFiles = len(FileParsed.files)
+                            FileParsed = reloadConfig(FileParsed, maFiles)
+
+                            if maFiles == 1:
+                                maFiles = str(maFiles) + " file"
+                            else:
+                                maFiles = str(maFiles) + " files"
+
                         findChanges = True
                 
                 try:
