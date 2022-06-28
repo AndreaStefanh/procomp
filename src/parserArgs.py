@@ -4,7 +4,7 @@ import sys
 
 def printUsage() -> None:
 
-    print("ProComp v1.0.0 - Copyright © 2022 Andrea Stefan")
+    print("ProComp v1.0.1 - Copyright © 2022 Andrea Stefan")
     print("License GPLv3: GNU GPL version 3 <https://gnu.org/licenses/gpl.html>")
     print("The source is hosted in github <https://github.com/AndreaStefanh/procomp>")
     print("usage: procomp [options] <configFile>")
